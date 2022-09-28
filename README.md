@@ -1,14 +1,15 @@
 # artificial-intelligence-in-health
-1.	Proje Mevcut Durum Değerlendirmesi
-Takımımızın hazırlamış olduğu Proje Sunuş Raporunda yapılan literatür taramaları sonucu elde edilen modeller ve kullanılması planlanan ensemble metodun uygulanabilirliğinin olduğu gözlemlenmiştir.Proje raporunda bahsedilen ensembel motodun içindeki modeller değiştirilmiştir. U-Net++, AM-GAN, LinkNet34 ve backbone olarak ImageNet veri setinde önceden eğitilmiş olan ResNet34 ensembel metodu U-Net++ ve backbone olarak ImageNet veri setinde önceden eğitilmiş olan ResNet34 olarak değiştirilmiştir. Başarı oranı beklenilen sonucu vermediği için değiştirilmiştir. Ayrıca eğitim sırasında yapılacak parametre sayısı yaklaşık olarak 150 milyondan 32 milyona kadar düşürülmüştür. Bu yüzden daha iyi ve hızlı sonuç aldığımız bu mimariyi segmentasyon aşamasında kullandık.
+# 1.	Proje Mevcut Durum Değerlendirmesi
 
-Yarışma kapsamında paylaşılan verilerin formatın (dcm) modellerde kullanılabilmesi için png formatına dönüştürme işlemleri yapıldı. Bunun dışında segmentasyon aşamasında kullanılmak için maskeleme işlemi yapıldı. Maskeleme işleminde bizlere verilen Data.xlss dosyasındaki başlangıç ve bitiş kesitleri kullanılmıştır.
+ Takımımızın hazırlamış olduğu Proje Sunuş Raporunda yapılan literatür taramaları sonucu elde edilen modeller ve kullanılması planlanan ensemble metodun uygulanabilirliğinin olduğu gözlemlenmiştir.Proje raporunda bahsedilen ensembel motodun içindeki modeller değiştirilmiştir. U-Net++, AM-GAN, LinkNet34 ve backbone olarak ImageNet veri setinde önceden eğitilmiş olan ResNet34 ensembel metodu U-Net++ ve backbone olarak ImageNet veri setinde önceden eğitilmiş olan ResNet34 olarak değiştirilmiştir. Başarı oranı beklenilen sonucu vermediği için değiştirilmiştir. Ayrıca eğitim sırasında yapılacak parametre sayısı yaklaşık olarak 150 milyondan 32 milyona kadar düşürülmüştür. Bu yüzden daha iyi ve hızlı sonuç aldığımız bu mimariyi segmentasyon aşamasında kullandık.
 
-Ayrıca sınıflandırma için veriler keras.preprocessing.image.DataFrameIterator sınıfına dönüştürüldü. Bu işlemden sonra VGG16 modelini sınıflandırma işlemleri için oluşturuldu.
-Segmentasyon için maskelenmiş veriler ve orijinal fotoğrafların bulunduğu dataframe DataGenerator [8] sınıfında ensemble metot da kullanılabilir hale getirildi. Bu sınıf içinde yapılan işlemler içinde standartlaştırma, normalleştirme ve yeniden şekillendirme adımları bulunmaktadır.
+ Yarışma kapsamında paylaşılan verilerin formatın (dcm) modellerde kullanılabilmesi için png formatına dönüştürme işlemleri yapıldı. Bunun dışında segmentasyon aşamasında kullanılmak için maskeleme işlemi yapıldı. Maskeleme işleminde bizlere verilen Data.xlss dosyasındaki başlangıç ve bitiş kesitleri kullanılmıştır.
 
-Şekil 1’de proje sunuş raporunda belirtilen ensemble metot, U-Net++ ve U-Net++ ve backbone olarak ImageNet veri setinde önceden eğitilmiş olan ResNet34’nin dice score, zaman ve IoU(Intersection over Union) metriklerine göre karşılaştırılmıştır.
- 
+ Ayrıca sınıflandırma için veriler keras.preprocessing.image.DataFrameIterator sınıfına dönüştürüldü. Bu işlemden sonra VGG16 modelini sınıflandırma işlemleri için oluşturuldu.Segmentasyon için maskelenmiş veriler ve orijinal fotoğrafların bulunduğu dataframe DataGenerator [8] sınıfında ensemble metot da kullanılabilir hale getirildi. Bu sınıf içinde yapılan işlemler içinde standartlaştırma, normalleştirme ve yeniden şekillendirme adımları bulunmaktadır.
+
+ Şekil 1’de proje sunuş raporunda belirtilen ensemble metot, U-Net++ ve U-Net++ ve backbone olarak ImageNet veri setinde önceden eğitilmiş olan ResNet34’nin dice score, zaman ve IoU(Intersection over Union) metriklerine göre karşılaştırılmıştır.
+![image](https://user-images.githubusercontent.com/71135791/192837273-37824671-2c37-4935-82ed-52cd46a4ce8f.png)
+
 Şekil 1
 2.	Özgünlük
 Dropout: Dropout bir hiper parametredir. Dropout kullanılarak fazladan ihtiyaç duyulmayan nöronlar derin öğrenme modelinden silinir. Kullanılan modellerde nöronun ağırlığı 0.5’den küçük olması durumunda düşürülmüştür. Böylelikle hem model hızlı öğrenebilmekte hem de başarı oranını 2-3 puan yükseltmektedir [9]. Yaptığımız testlerde başarı oranını %3 olumlu etkilemiştir.
